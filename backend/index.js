@@ -35,10 +35,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Routes
-app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/genre", genreRoutes);
-app.use("/api/v1/movies", moviesRoutes);
-app.use("/api/v1/upload", uploadRoutes);
+app.use("https://moviedb-drab-five.vercel.app//api/v1/users", userRoutes);
+app.use("https://moviedb-drab-five.vercel.app//api/v1/genre", genreRoutes);
+app.use("https://moviedb-drab-five.vercel.app//api/v1/movies", moviesRoutes);
+app.use("https://moviedb-drab-five.vercel.app//api/v1/upload", uploadRoutes);
 
 // Catch-all route for undefined API endpoints
 app.use((req, res) => {

@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": "http://localhost:3000",
-      "/uploads/": "http://localhost:3000",
+      "/api/": "https://moviedb-drab-five.vercel.app/",
+      "/uploads/": "https://moviedb-drab-five.vercel.app/",
     },
   },
 });

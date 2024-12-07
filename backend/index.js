@@ -3,8 +3,6 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
-import { fileURLToPath } from "url";
-import path from "path";
 
 // Files
 import connectDB from "./config/db.js";
@@ -23,27 +21,23 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://moviedb-ujxw.vercel.app/", // Replace with your frontend URL
-    credentials: true,
-  })
-);
-
-// Define __dirname for ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+app.use(cors());
 // Routes
-app.use("https://moviedb-drab-five.vercel.app//api/v1/users", userRoutes);
-app.use("https://moviedb-drab-five.vercel.app//api/v1/genre", genreRoutes);
-app.use("https://moviedb-drab-five.vercel.app//api/v1/movies", moviesRoutes);
-app.use("https://moviedb-drab-five.vercel.app//api/v1/upload", uploadRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/genre", genreRoutes);
+app.use("/api/v1/movies", moviesRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 
 // Catch-all route for undefined API endpoints
 app.use((req, res) => {
   res.status(404).send({ message: "API route not found" });
 });
 
-// Export the app for Vercel
+// Set port for localhost (port 3000)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+// Export the app for deployment
 export default app;
